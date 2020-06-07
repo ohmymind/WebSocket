@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+</head>
+<body>
+    <pre>
+      // 打开浏览器控制台，查看网络
+
+
+        function newSocket() {
+          var ws = new WebSocket("ws://localhost:9999");
+          ws.onopen = function () {
+              ws.send("这是一条来自客户端的数据");
+              console.log("数据发送中...");
+          };
+          ws.onmessage = function (evt) {
+              var msg = evt.data;
+              console.log("从服务端收到的数据",msg);
+          };
+          ws.onclose = function () {
+              console.log("关闭.");
+          };
+        }
+
+        newSocket();
+
+        发送数据：
+        sendMsg() {
+          ws.send("又发了一条数据");
+        }
+
+        关闭连接：
+        closeSocket() {
+          ws.close()
+        }
+    </pre>
+    <a href="javascript:sendMsg()">发送数据</a>
+    <a href="javascript:closeSocket()">关闭连接</a>
+</body>
+<script type="text/javascript">
+let ws = null;
+function newSocket() {
+  ws = new WebSocket("ws://localhost:9999");
+  console.log(ws)
+
+  ws.onopen = function () {
+      ws.send("这是一条来自客户端的数据");
+      console.log("数据发送中...");
+  };
+  ws.onmessage = function (evt) {
+      var msg = evt.data;
+      console.log("从服务端收到的数据",msg);
+  };
+  ws.onclose = function () {
+      console.log("关闭.");
+  };
+}
+console.log(ws)
+
+newSocket();
+
+function sendMsg() {
+  ws.send("又发了一条数据");
+}
+function closeSocket() {
+  ws.close()
+}
+</script>
+</html>
