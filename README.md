@@ -1,2 +1,2 @@
 # WebSocket
-a WebSocket without any dependency
+Implementing a WebSocket server with Node.js. （without any dependency）
